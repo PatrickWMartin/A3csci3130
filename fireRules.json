@@ -1,15 +1,27 @@
 {
   "rules": {
-    ".read": "true",
-    ".write": "true",
+    ".read": true,
+    ".write": true,
     "contacts": {
             "$contact": {
                 "name": {
-                    ".validate": "newData.isString() && newData.val().length < 50"
+                    ".validate": "newData.isString() && newData.val().length < 48 && newData.val().length > 2"
                 },
                 "email": {
-                    ".validate": "newData.isString() && newData.val().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i)"
-                }
+                    ".validate": "newData.isString()  && newData.val().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i)"
+                },
+                "businessNumber":{
+                  ".validate": "newData.isString() && newData.val().length == 9 && newData.val().matches(/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/i)"
+                },
+                "primaryBusiness":{
+                  ".validate": "newData.isString() && (newData.val() === 'Fisher' || newData.val() === 'Distributor' || newData.val() === 'Processor' || newData.val() === 'Fish Monger')"
+                },
+                "address":{
+                  ".validate": "newData.isString() && newData.val().length < 50"
+                },
+                "province": {
+                 ".validate": "newData.isString() && (newData.val() === 'AB' || newData.val() === 'BC' || newData.val() === 'MB' || newData.val() === 'NB' || newData.val() === 'NL' || newData.val() === 'NS' || newData.val() === 'NT' || newData.val() === 'NU' || newData.val() === 'ON' || newData.val() === 'PE' || newData.val() === 'QC' || newData.val() === 'SK' || newData.val() === 'YT' || newData.val() === '')"
+               },
             }
         }
   }
